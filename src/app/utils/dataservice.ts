@@ -6,7 +6,7 @@ import cloud from '@/app/assets/sunCloud.png'
 import drizzle from '@/app/assets/rain.png'
 import hazy from '@/app/assets/hazy.png'
 
-import { apiKey } from './hidekey'
+import { apiKey } from './hiddenKey'
 import { StaticImageData } from 'next/image'
 let units = '&units=imperial';
 
