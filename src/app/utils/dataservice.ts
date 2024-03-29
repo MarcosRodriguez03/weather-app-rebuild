@@ -15,14 +15,14 @@ const apiKey = process.env.NEXT_PUBLIC_ANALYTICS_ID
 
 
 export async function GeolocationCheck(latitude: string, longitude: string) {
-    const promise = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}${units}`);
+    const promise = await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}${units}`);
     const data = await promise.json();
     return await data
 }
 
 
 export async function GetState(input: string) {
-    const promise = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=1&appid=${apiKey}`);
+    const promise = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=1&appid=${apiKey}`);
     const data = await promise.json();
     return await data && data[0].state
 }
