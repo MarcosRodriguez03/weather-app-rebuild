@@ -314,7 +314,7 @@ const HomePageComponent = () => {
                 <FiveDayForecastComponent day={fiveDay && fiveDay} image={fiveImg && fiveImg} high={fiveHigh && fiveHigh} low={fiveLow && fiveLow} />
             </div>
             <div className={`toggle-div ${isVisible ? 'visible' : 'hidden'}`}>
-                <div className='left-div p-[30px]'>
+                <div className='left-div p-[20px]'>
                     <div className='flex justify-end pr-[7px]'>
                         <Image src={exit} className='w-[16px] h-[16px]' alt="close button" onClick={() => toggleVisibility()} />
                     </div>
