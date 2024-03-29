@@ -1,6 +1,7 @@
 Marcos Rodriguez
-
-
+03/29/2024
+Weather App Rebuild
+I recreated my weather app in nextjs. To display data i used usestates, hooks like useeffect, and props to pass data through components.
 Peer Reviewer: Jayvon Khuth
 Peer Review: Good Job, I like the design of your website, it's mobile responsive, and it even looks very very similar to its figma design. One thing I would recommend is having a hover effect that makes the mouse a pointer mouse on things that are clickable like the favorites button and the favorites, you should also make the magnifying glass icon clickable too. Also some things are hard to see like the gray low temperature text in the 5 day forecasts, I would recommend maybe changing that to make it more visible. Some bugs you need to fix are, when you delete a favorite city, it will automatically enter that city in the search, and when I'm on one of my favorite cities, your website will change the favorite icon when I try to search an incorrect city name like 'hock or eee'.Looking at your code I liked how you used lots of conditional statements like if else's, but I feel like for some of those you can use a switch case instead. Other than some critiques and errors, I really like how you were able to get my actual location by leveraging the geolocation endpoint. And I also liked how you implemented higher order methods, dot notation/index notation, ternary operators, the && operators, and etc. Overall, good job!!
 
