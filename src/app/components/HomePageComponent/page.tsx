@@ -266,18 +266,18 @@ const HomePageComponent = () => {
                 <div className='flex justify-between items-center'>
                     <p className=' sm:text-[50px] text-[24px] xl:text-[75px] text-white me-5'>{city && city}, {state && state}</p>
                     <div>
-                        <div onClick={toggleVisibility} className='my-[10px] p-[15px] text-[20px] sm:text-[25px] xl:text-[40px] text-white hover:bg-[#345b8e] bg-[#426BA5] rounded-[10px]  bg-opacity-70 content-fit inline-block'>Favorites</div>
+                        <div onClick={toggleVisibility} className='cursor-pointer my-[10px] p-[15px] text-[20px] sm:text-[25px] xl:text-[40px] text-white hover:bg-[#345b8e] bg-[#426BA5] rounded-[10px]  bg-opacity-70 content-fit inline-block'>Favorites</div>
                     </div>
                 </div>
                 <div className='flex items-center justify-between'>
-                    <Image className=' h-[48px] w-[48px] me-[15px]' src={fav && fav} alt="favbtn"
+                    <Image className='cursor-pointer h-[48px] w-[48px] me-[15px]' src={fav && fav} alt="favbtn"
                         onClick={() => { handleSwitch(); handleAdd(city); determineFav() }}
                     />
 
                     <div className='flex items-center '>
                         <div className='bg-[#426BA5] rounded-[10px]  bg-opacity-70 flex items-center py-[5px] px-[15px]'>
                             <Image className='me-[15px]  h-[40px] w-[40px]' src={search} alt='src' />
-                            <input className='xl:pe-[150px] text-white bg-transparent placeholder-white' type="text" placeholder='Search'
+                            <input className='xl:pe-[150px] cursor-pointer text-white bg-transparent placeholder-white' type="text" placeholder='Search'
                                 onChange={(e) => setInputOnChange(e.target.value)} onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' ? setInput(e.currentTarget.value) : null}
                             />
                         </div>
@@ -316,22 +316,22 @@ const HomePageComponent = () => {
             <div className={`toggle-div ${isVisible ? 'visible' : 'hidden'}`}>
                 <div className='left-div p-[20px]'>
                     <div className='flex justify-end pr-[7px]'>
-                        <Image src={exit} className='w-[16px] h-[16px]' alt="close button" onClick={() => toggleVisibility()} />
+                        <Image src={exit} className='w-[16px] h-[16px] cursor-pointer' alt="close button" onClick={() => toggleVisibility()} />
                     </div>
                     <p className='text-white text-[24px] pb-[5px]'> Favorites</p>
 
                     {
                         localStor && localStor.map((ele: string, idx: number) => {
                             return <div
-                                onClick={() => { setInput(ele); toggleVisibility() }}
                                 key={idx} className='px-[10px] py-[15px] hover:bg-[#6b7b91] bg-[#8DA2BF] flex justify-between items-center rounded-lg mb-[10px]'>
                                 <h1
-                                    className='text-[16px] md:text-[24px] text-white '>{ele} </h1>
+                                    onClick={() => { setInput(ele); toggleVisibility() }}
+                                    className='cursor-pointer text-[16px] md:text-[24px] text-white '>{ele} </h1>
 
                                 <Image
                                     key={ele + 1}
                                     onClick={() => { removeFromLocalStorage(ele); handleSwitch(); toggleVisibility(); determineFav() }}
-                                    className='h-[16px] w-[16px] ' src={exit} alt='close' />
+                                    className='cursor-pointer h-[16px] w-[16px] ' src={exit} alt='close' />
                             </div>
                         })
                     }

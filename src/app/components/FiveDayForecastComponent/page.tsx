@@ -25,7 +25,7 @@ const FiveDayForecastComponent = (para: any) => {
             <div className=' grid col-span-2 xl:col-span-1'>
                 <div className='flex xl:justify-center justify-between xl:flex-col'>
                     <div className='mb-3 leading-10 text-[30px] sm:text-[50px] text-white'>H:{para.high}°F</div>
-                    <div className='leading-10 text-[30px] sm:text-[50px] text-[#8DA2BF]'>L:{para.low}°F</div>
+                    <div className='leading-10 text-[30px] sm:text-[50px] text-[#bed9ff]'>L:{para.low}°F</div>
                 </div>
             </div>
 
