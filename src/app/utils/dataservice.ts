@@ -6,9 +6,10 @@ import cloud from '@/app/assets/sunCloud.png'
 import drizzle from '@/app/assets/rain.png'
 import hazy from '@/app/assets/hazy.png'
 
-import { apiKey } from './hiddenKey'
+// import {  } from './hiddenKey'
 import { StaticImageData } from 'next/image'
 let units = '&units=imperial';
+const apiKey = process.env.NEXT_PUBLIC_ANALYTICS_ID
 
 
 
