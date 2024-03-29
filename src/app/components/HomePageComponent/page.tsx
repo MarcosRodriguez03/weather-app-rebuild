@@ -266,7 +266,7 @@ const HomePageComponent = () => {
                 <div className='flex justify-between items-center'>
                     <p className=' sm:text-[50px] text-[24px] xl:text-[75px] text-white me-5'>{city && city}, {state && state}</p>
                     <div>
-                        <div onClick={toggleVisibility} className='my-[10px] p-[15px] text-[20px] sm:text-[25px] xl:text-[40px] text-white bg-[#426BA5] rounded-[10px]  bg-opacity-70 content-fit inline-block'>Favorites</div>
+                        <div onClick={toggleVisibility} className='my-[10px] p-[15px] text-[20px] sm:text-[25px] xl:text-[40px] text-white hover:bg-[#345b8e] bg-[#426BA5] rounded-[10px]  bg-opacity-70 content-fit inline-block'>Favorites</div>
                     </div>
                 </div>
                 <div className='flex items-center justify-between'>
@@ -322,10 +322,10 @@ const HomePageComponent = () => {
 
                     {
                         localStor && localStor.map((ele: string, idx: number) => {
-                            return <div key={idx} className='px-[10px] py-[15px] bg-[#8DA2BF] flex justify-between items-center rounded-lg mb-[10px]'>
+                            return <div
+                                onClick={() => { setInput(ele); toggleVisibility() }}
+                                key={idx} className='px-[10px] py-[15px] hover:bg-[#6b7b91] bg-[#8DA2BF] flex justify-between items-center rounded-lg mb-[10px]'>
                                 <h1
-
-                                    onClick={() => { setInput(ele); toggleVisibility() }}
                                     className='text-[16px] md:text-[24px] text-white '>{ele} </h1>
 
                                 <Image
