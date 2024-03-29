@@ -24,15 +24,15 @@ import { ILocation } from '@/app/interfaces/interface';
 
 const HomePageComponent = () => {
 
-    const [city, setCity] = useState("stockton");
+    const [city, setCity] = useState("manteca");
     const [currentDay, setCurrentDay] = useState("");
     const [currentImg, setCurrentImg] = useState(sunny)
     const [currentWeather, setCurrentWeather] = useState(0)
     const [currentHigh, setCurrentHigh] = useState(0)
     const [currentLow, setCurrentLow] = useState(0)
-    const [state, setState] = useState<string>("stockton");
-    const [inputOnChange, setInputOnChange] = useState("stockton");
-    const [input, setInput] = useState("stockton")
+    const [state, setState] = useState<string>("manteca");
+    const [inputOnChange, setInputOnChange] = useState("manteca");
+    const [input, setInput] = useState("manteca")
     const [isBool, setIsBool] = useState(false);
     const [fav, setFav] = useState<StaticImageData>(add)
 
@@ -188,7 +188,7 @@ const HomePageComponent = () => {
         setFiveImg(WeatherStatCheckFiveDay(weatherIconArr[4]))
     }
 
-    let once = true;
+
 
     useEffect(() => {
         let latitude1;
@@ -203,10 +203,11 @@ const HomePageComponent = () => {
 
         }
         function errorFunc(error: any) {
-            alert("location must be on to see current weather");
+
+            console.log("location must be on to see current weather")
 
         }
-    }, [once])
+    },)
 
     useEffect(() => {
         doAll(input)
