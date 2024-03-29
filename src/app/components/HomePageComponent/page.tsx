@@ -15,7 +15,7 @@ import hazy from '@/app/assets/hazy.png'
 import add from '@/app/assets/add.png'
 
 
-import { CurrentDay, FindHigh, FindLow, FiveDayForecast, GeolocationCheck, GetState, WeatherStatCheckFiveDay, doAll, getStateAbbreviation } from '@/app/utils/dataservice';
+import { CurrentDay, FindHigh, FindLow, FiveDayForecast, GeolocationCheck, GetState, WeatherStatCheckFiveDay, getStateAbbreviation } from '@/app/utils/dataservice';
 import { getlocalStorage, removeFromLocalStorage, savelocalStorage } from '@/app/utils/localStorage';
 import { type } from 'os';
 import { ILocation } from '@/app/interfaces/interface';
