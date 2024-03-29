@@ -188,7 +188,7 @@ const HomePageComponent = () => {
         setFiveImg(WeatherStatCheckFiveDay(weatherIconArr[4]))
     }
 
-
+    let once = true;
 
     useEffect(() => {
         let latitude1;
@@ -206,7 +206,7 @@ const HomePageComponent = () => {
             alert("location must be on to see current weather");
 
         }
-    }, [])
+    }, [once])
 
     useEffect(() => {
         doAll(input)
