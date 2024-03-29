@@ -24,15 +24,15 @@ import { ILocation } from '@/app/interfaces/interface';
 
 const HomePageComponent = () => {
 
-    const [city, setCity] = useState("manteca");
-    const [currentDay, setCurrentDay] = useState("");
+    const [city, setCity] = useState("stockton");
+    const [currentDay, setCurrentDay] = useState("monday");
     const [currentImg, setCurrentImg] = useState(sunny)
     const [currentWeather, setCurrentWeather] = useState(0)
     const [currentHigh, setCurrentHigh] = useState(0)
     const [currentLow, setCurrentLow] = useState(0)
-    const [state, setState] = useState<string>("manteca");
-    const [inputOnChange, setInputOnChange] = useState("manteca");
-    const [input, setInput] = useState("manteca")
+    const [state, setState] = useState<string>("stockton");
+    const [inputOnChange, setInputOnChange] = useState("stockton");
+    const [input, setInput] = useState("stockton")
     const [isBool, setIsBool] = useState(false);
     const [fav, setFav] = useState<StaticImageData>(add)
 
@@ -190,6 +190,9 @@ const HomePageComponent = () => {
 
 
 
+
+
+
     useEffect(() => {
         let latitude1;
         let longitude1;
@@ -200,14 +203,11 @@ const HomePageComponent = () => {
             longitude1 = position.coords.longitude;
             let data: any = await GeolocationCheck(latitude1, longitude1)
             doAll(data ? data[0].local_names.en : "stockton");
-
         }
         function errorFunc(error: any) {
-
             console.log("location must be on to see current weather")
-
         }
-    },)
+    }, [])
 
     useEffect(() => {
         doAll(input)

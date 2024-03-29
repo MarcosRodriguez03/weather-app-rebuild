@@ -9,7 +9,7 @@ type IObject = {
     low: number
 }
 
-const FiveDayForecastComponent = (para: IObject) => {
+const FiveDayForecastComponent = (para: any) => {
 
 
     return (
