@@ -18,20 +18,21 @@ import add from '@/app/assets/add.png'
 import { CurrentDay, FindHigh, FindLow, FiveDayForecast, GeolocationCheck, GetState, WeatherStatCheckFiveDay, doAll, getStateAbbreviation } from '@/app/utils/dataservice';
 import { getlocalStorage, removeFromLocalStorage, savelocalStorage } from '@/app/utils/localStorage';
 import { type } from 'os';
+import { ILocation } from '@/app/interfaces/interface';
 
 
 
 const HomePageComponent = () => {
 
-    const [city, setCity] = useState("");
+    const [city, setCity] = useState("stockton");
     const [currentDay, setCurrentDay] = useState("");
     const [currentImg, setCurrentImg] = useState(sunny)
     const [currentWeather, setCurrentWeather] = useState(0)
     const [currentHigh, setCurrentHigh] = useState(0)
     const [currentLow, setCurrentLow] = useState(0)
     const [state, setState] = useState<string>("stockton");
-    const [inputOnChange, setInputOnChange] = useState("");
-    const [input, setInput] = useState("")
+    const [inputOnChange, setInputOnChange] = useState("stockton");
+    const [input, setInput] = useState("stockton")
     const [isBool, setIsBool] = useState(false);
     const [fav, setFav] = useState<StaticImageData>(add)
 
@@ -150,9 +151,8 @@ const HomePageComponent = () => {
             weatherIconArr.push(fiveDay.list[i + 4].weather[0].main)
 
 
-            let time = new Intl.DateTimeFormat('en-US', options).format(new Date((fiveDay.list[i + 4].dt * 1000) + (current.timezone * 1000)))
+            let time = new Intl.DateTimeFormat('en-US', options).format(new Date((fiveDay.list[i + 5].dt * 1000) + (current.timezone * 1000)))
             let day = time.split(",")
-
             dayArr.push(day[0])
 
         }
@@ -198,8 +198,8 @@ const HomePageComponent = () => {
         async function success(position: any) {
             latitude1 = position.coords.latitude;
             longitude1 = position.coords.longitude;
-            let data = await GeolocationCheck(latitude1, longitude1)
-            doAll(data && data[0].local_names.en);
+            let data: any = await GeolocationCheck(latitude1, longitude1)
+            doAll(data ? data[0].local_names.en : "stockton");
 
         }
         function errorFunc(error: any) {
@@ -263,7 +263,7 @@ const HomePageComponent = () => {
         <div className='background'>
             <div className='xl:flex items-center justify-between px-[10px] md:px-[30px] grid grid-cols-1' >
                 <div className='flex justify-between items-center'>
-                    <p className=' sm:text-[50px] text-[24px] xl:text-[75px] text-white me-5'>{city && city} {state && state}</p>
+                    <p className=' sm:text-[50px] text-[24px] xl:text-[75px] text-white me-5'>{city && city}, {state && state}</p>
                     <div>
                         <div onClick={toggleVisibility} className='my-[10px] p-[15px] text-[20px] sm:text-[25px] xl:text-[40px] text-white bg-[#426BA5] rounded-[10px]  bg-opacity-70 content-fit inline-block'>Favorites</div>
                     </div>
@@ -286,13 +286,16 @@ const HomePageComponent = () => {
             <div className="grid grid-cols-1 xl:grid-cols-5 gap-[10px] md:gap-[30px] p-[10px]  md:p-[30px]">
 
                 <div className='g xl:col-span-5 grid xl:grid-cols-2'>
-                    <div className="tempBox flex justify-center items-center py-[30px]">
-                        <div>
-                            <p className='text-center text-white sm:text-[50px] text-[30px] xl:text-[50px]'>{currentDay && currentDay} </p>
-                            <div className='flex items-center justify-center'>
-                                <Image className='pe-[50px] w-[125px] md:w-[200px]' src={currentImg && currentImg} alt="sun" />
-                                <p className='text-white sm:text-[90px] text-[70px] xl:text-[150px]'>{currentWeather}°F</p>
+                    <div className="tempBox flex justify-center items-center py-[30px] ">
+                        <div className='w-full h-full border-r border-[#8DA2BF] '>
+                            <div className=''>
+                                <p className='text-center  text-white sm:text-[50px] text-[30px] xl:text-[50px]'>{currentDay && currentDay} </p>
+                                <div className='flex items-center justify-center'>
+                                    <Image className='pe-[50px] w-[125px] md:w-[200px]' src={currentImg && currentImg} alt="sun" />
+                                    <p className='text-white sm:text-[90px] text-[70px] xl:text-[150px]'>{currentWeather}°F</p>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                     <div className='tempBox3 text-center  xl:flex items-center xl:justify-center py-[30px]'>
@@ -311,19 +314,21 @@ const HomePageComponent = () => {
             </div>
             <div className={`toggle-div ${isVisible ? 'visible' : 'hidden'}`}>
                 <div className='left-div p-[30px]'>
-                    <div className='flex justify-end'>
+                    <div className='flex justify-end pr-[7px]'>
                         <Image src={exit} className='w-[16px] h-[16px]' alt="close button" onClick={() => toggleVisibility()} />
                     </div>
-                    <p className='text-white text-[24px] text-center'> Favorites</p>
+                    <p className='text-white text-[24px] pb-[5px]'> Favorites</p>
 
                     {
-                        localStor && localStor.map((ele: string) => {
-                            return <div className='px-[10px] py-[15px] bg-[#8DA2BF] flex justify-between items-center rounded-lg mb-[20px]'>
+                        localStor && localStor.map((ele: string, idx: number) => {
+                            return <div key={idx} className='px-[10px] py-[15px] bg-[#8DA2BF] flex justify-between items-center rounded-lg mb-[10px]'>
                                 <h1
-                                    key={ele} onClick={() => { setInput(ele); toggleVisibility() }}
+
+                                    onClick={() => { setInput(ele); toggleVisibility() }}
                                     className='text-[16px] md:text-[24px] text-white '>{ele} </h1>
 
                                 <Image
+                                    key={ele + 1}
                                     onClick={() => { removeFromLocalStorage(ele); handleSwitch(); toggleVisibility(); determineFav() }}
                                     className='h-[16px] w-[16px] ' src={exit} alt='close' />
                             </div>

@@ -16,14 +16,13 @@ let units = '&units=imperial';
 export async function GeolocationCheck(latitude: string, longitude: string) {
     const promise = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}${units}`);
     const data = await promise.json();
-
     return await data
 }
+
+
 export async function GetState(input: string) {
     const promise = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=1&appid=${apiKey}`);
     const data = await promise.json();
-
-
     return await data && data[0].state
 }
 
@@ -38,6 +37,7 @@ export async function CurrentDay(theCheck: string) {
 export async function FiveDayForecast(theCheck: string) {
     const promise = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${theCheck}&appid=${apiKey}${units}`);
     const data = await promise.json();
+    console.log(data)
 
     return await data
 }
@@ -99,11 +99,15 @@ export const doAll = async (input: string) => {
 
         let time = new Intl.DateTimeFormat('en-US', options).format(new Date((fiveDay.list[i + 4].dt * 1000) + (current.timezone * 1000)))
         let day = time.split(",")
-
+        console.log("hello")
         dayArr.push(day[0])
-
     }
+
+
+
+
     //5 day
+    console.log("hello")
     console.log(weatherIconArr)
     console.log(highArr)
     console.log(lowArr)
@@ -255,7 +259,7 @@ export function getStateAbbreviation(state: string) {
         case 'wyoming':
             return 'WY';
         default:
-            return 'Invalid input';
+            return 'N/A';
     }
 }
 
